@@ -1,7 +1,7 @@
 /**
  * Saints Closet · order log
  *
- * Every order placed on saintscloset.store is sent here at the same moment WhatsApp opens for the customer.
+ * Every order placed on the Saints Closet site is sent here at the same moment WhatsApp opens for the customer.
  * This script adds one row to "Orders" and one row per piece to "Order lines".
  *
  * Setup (once): see google-sheet/SETUP.md. In short: paste this file into Extensions → Apps Script of the
