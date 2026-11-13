@@ -17,11 +17,10 @@
 window.SHOP = {
   /* ── Launch switches ─────────────────────────────── */
   // true = the page says orders are tests and asks search engines not to index it. Set to false at launch.
-  testMode: true,
+  testMode: false,
 
   // The number orders are sent to on WhatsApp: country code + number, digits only (961 = Lebanon).
-  // PLACEHOLDER: replace with the shop's real number before launch.
-  whatsapp: '96100000000',
+  whatsapp: '96171644493',
 
   // The Google Apps Script web app link that saves every order to the Google Sheet (ends in /exec).
   // Leave empty until the script is deployed; orders still go to WhatsApp.
