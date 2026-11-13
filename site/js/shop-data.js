@@ -24,7 +24,7 @@ window.SHOP = {
 
   // The Google Apps Script web app link that saves every order to the Google Sheet (ends in /exec).
   // Leave empty until the script is deployed; orders still go to WhatsApp.
-  sheetUrl: 'https://script.google.com/macros/s/AKfycbxalD-CasN_VnRquMS6EyFxJddox-hxaTchTybS-iJYexiK5ymUCugC2QcdZLzT8WNfZw/exec',
+  sheetUrl: 'https://script.google.com/macros/s/AKfycbweqLb6k0Vtr3amex7yokbLz88k6cPq5CF37VtOS0BBXEkkZln0AlaCkxXRVBlxUb8O/exec',
 
   /* ── Money ───────────────────────────────────────── */
   currency: 'USD',
