@@ -25,8 +25,35 @@
     const [low, high] = Store.priceRange(p);
     return low === high ? Store.money(low) : `From ${Store.money(low)}`;
   }
+  // A coming-soon piece with no photo is sealed: nothing about the design is shown, only that something waits.
+  const ROMAN = n => [[10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I']].reduce((out, [v, r]) => { while (n >= v) { out += r; n -= v; } return out; }, '');
+  const VEILED = [
+    'Even the saints haven&#8217;t seen this one.',
+    'Name withheld. Print unknown. Prayers accepted.',
+    'Locked in the vault until the drop.',
+    'Revealed only to the faithful.',
+  ];
+  const SILHOUETTE = '<svg class="sealed-hoodie" viewBox="0 0 200 222" aria-hidden="true"><path d="M70 40C76 18 124 18 130 40L160 55C172 61 178 71 181 85L196 170C197 176 193 181 187 181L172 183C167 183 164 180 163 175L152 114V206C152 212 148 216 142 216H58C52 216 48 212 48 206V114L37 175C36 180 33 183 28 183L13 181C7 181 3 176 4 170L19 85C22 71 28 61 40 55Z"/><path d="M80 44C86 64 114 64 120 44M93 60 91 88M107 60 109 88M70 160H130L137 190H63ZM48 202H152"/></svg>';
+  function sealedCard(p, i) {
+    const n = ROMAN(i + 1);
+    return `<article class="card soon sealed" data-id="${esc(p.id)}" style="transition-delay:${(i % 4) * 0.08}s">
+      <div class="card-media">
+        <span class="sealed-glow" aria-hidden="true"></span>
+        ${SILHOUETTE}
+        <span class="wax" aria-hidden="true"><b>${n}</b></span>
+        <span class="sheen" aria-hidden="true"></span>
+        <span class="card-tag">Sealed</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title"><h3><span class="redact" aria-hidden="true" style="--w:${[6.2, 4.4, 7.4, 5.3][i % 4]}ch"></span><span class="sr-only">Sealed piece ${n}, name withheld</span></h3><span class="price redact-price" aria-hidden="true">$&thinsp;??</span></div>
+        <p class="card-blurb">${VEILED[i % VEILED.length]}</p>
+        <p class="soon-note">Revealed at the drop</p>
+      </div>
+    </article>`;
+  }
   function card(p, i) {
     const look = p.look, soon = p.comingSoon;
+    if (soon && !look.image) return sealedCard(p, i);
     const soldOut = !soon && p.variants.every(v => v.available < 1);
     const tagText = p.tag || (soon ? 'Coming soon' : p.colour ? `${p.colour} hoodie` : p.drop === 'd02' ? 'Drop 02' : 'Drop 01');
     const tag = `<span class="card-tag${p.tag ? ' hot' : ''}">${esc(tagText)}</span>`;
@@ -77,6 +104,7 @@
     }
     document.querySelectorAll('a[href="#drop-02"]').forEach(a => { a.hidden = d02.length === 0; });
     reveal(document.querySelectorAll('.card'));
+    swipeRow();
   }
   function renderSizeGuide() {
     const rows = Store.settings.sizeGuide;
@@ -212,6 +240,87 @@
   });
   drawMotion();
 
+  /* ── Drop 01 on phones: one swipe row ──────────────
+     Up to 700px the grid is a sideways scroller (site.css). Here: the "1 / 13 · Swipe ›››" bar above it,
+     the gold meter below it, the region labels, and a one-time nudge that shows the row moves. */
+  const phone = matchMedia('(max-width: 700px)');
+  const row = $('#grid-d01');
+  const CHEV = '<svg viewBox="0 0 8 12" aria-hidden="true"><path d="M2 1.5 6.5 6 2 10.5"/></svg>';
+  const bar = document.createElement('div'), meter = document.createElement('div');
+  bar.className = 'swipe-bar'; bar.hidden = true; bar.setAttribute('aria-hidden', 'true');
+  bar.innerHTML = `<span class="swipe-count"><b>1</b><span> / </span><span>0</span></span><span class="swipe-hint">Swipe<span class="swipe-chev">${CHEV}${CHEV}${CHEV}</span></span>`;
+  meter.className = 'swipe-meter'; meter.hidden = true; meter.setAttribute('aria-hidden', 'true');
+  meter.innerHTML = '<i></i>';
+  row.before(bar); row.after(meter);
+  const [countNow, , countAll] = bar.querySelector('.swipe-count').children;
+  const rowCards = () => [...row.querySelectorAll(':scope > .card')];
+
+  function drawRow() {
+    if (!phone.matches || bar.hidden) return;
+    const list = rowCards(), max = row.scrollWidth - row.clientWidth;
+    const step = list.length > 1 ? list[1].offsetLeft - list[0].offsetLeft : 1;
+    // the card snapped at the left; at the very end the last card counts, even though it cannot reach the left edge
+    let index = max > 0 && row.scrollLeft >= max - 2 ? list.length - 1 : Math.round(row.scrollLeft / step);
+    index = Math.min(Math.max(index, 0), list.length - 1);
+    if (countNow.textContent !== String(index + 1)) countNow.textContent = index + 1;
+    meter.firstChild.style.setProperty('--fill', row.scrollWidth ? Math.min(1, (row.scrollLeft + row.clientWidth) / row.scrollWidth).toFixed(4) : '1');
+  }
+  function swipeRow() {
+    const n = rowCards().length, on = phone.matches && n > 0;
+    bar.hidden = meter.hidden = !on;
+    if (on) {
+      row.setAttribute('role', 'region');
+      row.setAttribute('aria-label', `Drop 01, ${n} ${n === 1 ? 'hoodie' : 'hoodies'}, scroll sideways`);
+      row.tabIndex = 0;
+      countAll.textContent = n;
+      drawRow();
+    } else {
+      row.removeAttribute('role'); row.removeAttribute('aria-label'); row.removeAttribute('tabindex');
+    }
+  }
+
+  let swiped = false, rowTicking = false;
+  row.addEventListener('scroll', () => {
+    if (!swiped && row.scrollLeft > 8) { swiped = true; bar.classList.add('is-swiped'); }
+    if (!rowTicking) { rowTicking = true; requestAnimationFrame(() => { rowTicking = false; drawRow(); }); }
+  }, { passive: true });
+  let rowResize = 0;
+  addEventListener('resize', () => { clearTimeout(rowResize); rowResize = setTimeout(drawRow, 120); });
+  phone.addEventListener('change', () => { row.classList.remove('is-nudging'); swipeRow(); if (phone.matches) tryNudge(); });
+
+  /* the nudge: once per visit, the first time the row is seen on a phone, after the cards have revealed */
+  const NUDGE_KEY = 'saints:d01-nudged';
+  let nudged = false, nudgeWait = 0, rowInView = false;
+  const nudgeSeen = () => { try { return sessionStorage.getItem(NUDGE_KEY) === '1'; } catch { return false; } };
+  function stopNudge() { clearTimeout(nudgeWait); nudgeWait = 0; row.classList.remove('is-nudging'); }
+  function tryNudge() {
+    if (nudged || nudgeWait || !rowInView || !phone.matches || Store.reduceMotion()) return;
+    if (nudgeSeen() || swiped) { nudged = true; return; }
+    const first = rowCards().slice(0, 2);
+    if (first.length < 2) return;
+    // wait until the first cards have .in, then let their reveal (.9s plus its small stagger) finish
+    const revealed = first.every(c => c.classList.contains('in'));
+    nudgeWait = setTimeout(() => {
+      nudgeWait = 0;
+      if (!revealed) { tryNudge(); return; }
+      if (nudged || swiped || !rowInView || !phone.matches || Store.reduceMotion()) return;
+      nudged = true;
+      try { sessionStorage.setItem(NUDGE_KEY, '1'); } catch { /* private mode: once per page load */ }
+      row.classList.add('is-nudging');
+      first[0].addEventListener('animationend', () => row.classList.remove('is-nudging'), { once: true });
+      setTimeout(() => row.classList.remove('is-nudging'), 1800);
+    }, revealed ? 1100 : 250);
+  }
+  // a finger on the row means they have found it: no nudge, or stop the one that is playing
+  row.addEventListener('pointerdown', () => { if (phone.matches) { nudged = true; stopNudge(); } }, { passive: true });
+  document.addEventListener('saints:motion', () => { if (Store.reduceMotion()) stopNudge(); });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(es => {
+      rowInView = es[es.length - 1].isIntersecting;
+      if (rowInView) tryNudge(); else if (nudgeWait) stopNudge();
+    }, { threshold: 0.35 }).observe(row);
+  }
+
   /* ── Boot ──────────────────────────────────────── */
   document.addEventListener('saints:catalogue', () => { renderGrids(); });
   Store.ready.then(() => { renderGrids(); renderSizeGuide(); renderContact(); renderShopInformation(); }, error => {
@@ -220,5 +329,6 @@
     message.textContent = error instanceof Error ? error.message : 'The collection could not load.';
     $('#grid-d01').replaceChildren(message);
     $('#drop-02').hidden = true;
+    swipeRow();
   });
 })();

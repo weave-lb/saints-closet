@@ -43,7 +43,7 @@ const Store = (() => {
     // cutout: a hoodie on a transparent background; the back (the design) shows first, the front is one tap away
     const look = kind === 'cutout'
       ? { split: false, separate: true, cutout: true, startsOnBack: true, image: asset(raw.back), backImage: asset(raw.front), railImage: thumb(raw.back), bg: '#e6e0d4' }
-      : { split: kind === 'photo-pair', separate: false, image: asset(raw.image), backImage: '', railImage: thumb(raw.image), bg: /^#[0-9a-f]{3,8}$/i.test(raw.bg || '') ? raw.bg : '#111' };
+      : { split: kind === 'photo-pair', separate: false, image: raw.image ? asset(raw.image) : '', backImage: '', railImage: raw.image ? thumb(raw.image) : '', bg: /^#[0-9a-f]{3,8}$/i.test(raw.bg || '') ? raw.bg : '#111' };
     return {
       id: raw.id,
       name: String(raw.name || raw.id),

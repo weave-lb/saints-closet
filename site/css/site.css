@@ -624,5 +624,65 @@ p.f-error{margin:-8px 0 14px}
 .totals .saved span{font-style:italic;font-family:var(--f-serif);font-size:16px}
 .placed-saved{color:var(--gold-hi);font-weight:600}
 @media (max-width:560px){.seal{width:56px;height:56px;right:10px;top:10px}.seal b{font-size:16px}.seal i{font-size:10px}}
+
+/* ═════════ THE VAULT · sealed pieces ═════════
+   A coming-soon piece with no photo: a dark velvet panel, a hoodie drawn in a gold hairline, a wax seal
+   with its number, a redacted name. Nothing about the design itself. */
+.card.sealed .card-media{cursor:default;display:grid;place-items:center;
+  background:radial-gradient(ellipse 75% 60% at 50% 42%,#2b2216 0%,#15110b 55%,#0a0907 100%);border-color:rgba(212,174,90,.28);
+  box-shadow:inset 0 0 0 1px rgba(246,226,166,.06),inset 0 -60px 80px -40px rgba(0,0,0,.8),0 30px 60px -40px rgba(60,40,10,.6)}
+.sealed-glow{position:absolute;left:50%;top:50%;width:90%;aspect-ratio:1;translate:-50% -50%;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(246,226,166,.2),rgba(212,174,90,.06) 45%,transparent 70%);animation:vaultBreath 5.5s ease-in-out infinite}
+.card.sealed:nth-child(2) .sealed-glow{animation-delay:-1.4s}
+.card.sealed:nth-child(3) .sealed-glow{animation-delay:-2.8s}
+.card.sealed:nth-child(4) .sealed-glow{animation-delay:-4.2s}
+@keyframes vaultBreath{0%,100%{opacity:.55;scale:.92}50%{opacity:1;scale:1.04}}
+.sealed-hoodie{position:relative;width:72%;height:auto;overflow:visible;fill:rgba(10,9,7,.55);stroke:rgba(212,174,90,.42);stroke-width:1.1;stroke-linejoin:round;stroke-linecap:round;transition:stroke .6s}
+.sealed-hoodie path+path{fill:none;stroke:rgba(212,174,90,.22)}
+.card.sealed .card-media:hover .sealed-hoodie{stroke:rgba(246,226,166,.7)}
+.wax{position:absolute;left:50%;top:55%;width:clamp(54px,24%,78px);aspect-ratio:1;translate:-50% -50%;border-radius:50%;display:grid;place-items:center;rotate:-8deg;
+  background:radial-gradient(circle at 35% 30%,#fff3c9,#d4ae5a 45%,#8a6a2c 100%);color:#1a1306;
+  box-shadow:0 0 0 3px rgba(10,9,7,.4),0 0 0 4px rgba(246,226,166,.55),0 0 34px rgba(246,226,166,.35),0 12px 24px -8px #000;transition:rotate .6s var(--spring),scale .6s var(--spring)}
+.wax::before{content:"";position:absolute;inset:5px;border-radius:50%;border:1px dashed rgba(26,19,6,.45)}
+.wax b{font:italic 600 clamp(18px,1.9vw,26px)/1 var(--f-serif);letter-spacing:.02em}
+.card.sealed .card-media:hover .wax{rotate:4deg;scale:1.06}
+.shop--d02 .card.sealed .card-tag,.card.sealed .card-tag{background:rgba(10,9,7,.72);color:var(--gold-hi);border-color:rgba(212,174,90,.35)}
+.redact{display:inline-block;width:var(--w,6ch);max-width:100%;height:.82em;vertical-align:-.04em;border-radius:3px;background:var(--ink-on-light);
+  box-shadow:inset 0 0 0 1px rgba(212,174,90,.25);background-image:linear-gradient(100deg,transparent 30%,rgba(246,226,166,.18) 46%,transparent 62%);background-size:260% 100%;animation:redactSheen 4.8s ease-in-out infinite}
+@keyframes redactSheen{0%,55%{background-position:120% 0}100%{background-position:-60% 0}}
+.price.redact-price{font:700 15px/1 var(--f-ui);letter-spacing:.08em;color:var(--gold-lo)}
+.card.sealed .card-blurb{font:italic 500 17px/1.35 var(--f-serif);color:var(--muted-on-light)}
+.card.sealed .soon-note{letter-spacing:.2em;text-align:center;line-height:1.35;padding:0 12px}
+@media (max-width:560px){.shop--d02 .card.sealed .card-blurb{display:-webkit-box;font-size:14.5px}.price.redact-price{font-size:13px}.card.sealed .soon-note{height:44px;font-size:9.5px;letter-spacing:.14em;padding:0 8px}}
+@media (prefers-reduced-motion:reduce){.sealed-glow,.redact{animation:none}}
+.motion-off .sealed-glow,.motion-off .redact{animation:none}
+
+/* ═════════ DROP 01 ON PHONES · one swipe row ═════════
+   The counter bar and the gold meter are added by site.js and only shown up to 700px.
+   The nudge moves the cards with `translate`, not `transform` (the reveal) or scrollLeft (the snap). */
+.swipe-bar,.swipe-meter{display:none}
+@media (max-width:700px){
+  #grid-d01{display:flex;gap:14px;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-padding:0 var(--gutter);padding:4px var(--gutter) 8px;scrollbar-width:none}
+  #grid-d01::-webkit-scrollbar{display:none}
+  #grid-d01 > .card{flex:0 0 min(80vw,340px);scroll-snap-align:start}
+  #grid-d01 > .grid-empty{flex:1 0 100%}
+  #grid-d01:focus-visible{outline-offset:-2px;border-radius:0}
+  #grid-d01.is-nudging > .card{animation:rowNudge 1.4s var(--ease-io)}
+  .swipe-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 var(--gutter);margin:0 0 16px}
+  .swipe-count{font:600 22px/1 var(--f-serif);letter-spacing:.04em;color:var(--gold);white-space:nowrap;font-variant-numeric:lining-nums tabular-nums}
+  .swipe-count span{color:var(--dim)}
+  .swipe-hint{display:flex;align-items:center;gap:10px;font:600 10.5px/1 var(--f-ui);letter-spacing:.22em;text-transform:uppercase;color:var(--muted);transition:opacity .6s var(--ease)}
+  .swipe-bar.is-swiped .swipe-hint{opacity:.3}
+  .swipe-chev{display:flex;gap:1px}
+  .swipe-chev svg{width:8px;height:12px;fill:none;stroke:var(--gold);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;opacity:.25;animation:chev 1.5s ease-in-out infinite}
+  .swipe-chev svg:nth-child(2){animation-delay:.18s}
+  .swipe-chev svg:nth-child(3){animation-delay:.36s}
+  .swipe-meter{display:block;position:relative;height:2px;margin:18px var(--gutter) 0;border-radius:2px;background:var(--line);overflow:hidden}
+  .swipe-meter i{position:absolute;inset:0;border-radius:2px;background:var(--metal);background-size:220% 100%;transform-origin:0 50%;transform:scaleX(var(--fill,0));box-shadow:0 0 8px rgba(246,226,166,.5)}
+}
+@keyframes chev{0%,100%{opacity:.25;transform:none}40%{opacity:1;transform:translateX(2px)}}
+@keyframes rowNudge{0%,100%{translate:0 0}38%,52%{translate:-60px 0}}
+@media (prefers-reduced-motion:reduce){.swipe-chev svg{animation:none;opacity:.8}}
+.motion-off .swipe-chev svg{animation:none;opacity:.8}
 .totals .was-row s{position:relative;text-decoration:none;color:var(--dim);font-weight:600}
 .totals .was-row s::after{content:"";position:absolute;left:-2px;right:-2px;top:52%;height:1.5px;background:linear-gradient(90deg,#b8892f,#f6e2a6);transform:rotate(-8deg);border-radius:2px}

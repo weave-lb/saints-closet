@@ -29,17 +29,14 @@ Source: `Saints-Closet-Hoodie-Cutouts.zip` (13 back designs plus one front per c
 
 Size SKUs for each style: `-S`, `-M`, `-L`, `-XL`, `-XXL` (e.g. `SC-HD-PNK-SNR-XL`).
 
-## Drop 02 · The Vault (coming soon, not orderable)
-These are designs from the original artwork that are not in the official zip.
+## Drop 02 · The Vault (sealed, not orderable)
+The designs are not chosen yet. The site shows four sealed cards (`vault-1` to `vault-4` in `site/js/shop-data.js`):
+a hoodie silhouette, a wax seal and a redacted name, with nothing about the design.
 
-| Name | SKU (reserved) | Artwork |
-|---|---|---|
-| Cupid Ink | SC-HD-V-CPI | 1000588155 tattooed angel with bow |
-| Hush | SC-HD-V-HSH | 1000588158 shushing cherub |
-| Holy Smoke | SC-HD-V-HSM | 1000588160 haloed cigar cherub |
-| Thunder Father | SC-HD-V-THF | 1000588152 statue collage |
+To reveal a piece, give its line a real name, `image` and `description` (it then shows as a normal "Coming soon" card),
+and a colour SKU like the ones above. Add `sizes` when it can be ordered.
 
-`V` marks a Vault design with no colour yet. When one is released, give it a colour SKU like the ones above.
+Earlier Vault placeholders, no longer on the site: Cupid Ink, Hush, Holy Smoke, Thunder Father.
 
 ## Removed from the site
 These were design placeholders and aren't in the official zip: The Tithe Collector, Blind Faith. Guardian Angel, Iced Out, Sweet Sin and Golden Silence moved from the Vault to Drop 01.

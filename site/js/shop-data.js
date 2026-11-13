@@ -8,6 +8,7 @@
    · Prices are plain numbers in the shop currency: 35.99 means $35.99, 75 means $75.
    · compareAt: 42.99 shows $42.99 struck through next to the price, and the saving as "$7 forgiven".
    · A product with an empty sizes list ( sizes: [] ) shows as "Coming soon" and cannot be ordered.
+     With no image as well, it shows as a sealed mystery card (see Drop 02 below).
    · To mark one size as sold out, add it to soldOut, e.g. soldOut: ['XL'].
    · Photos live in /assets, with a smaller copy (about 400 px) under /assets/thumbs at the same path.
      kind: 'cutout'     = a hoodie photo on a transparent background, with back and front photos
@@ -36,9 +37,9 @@ window.SHOP = {
   // Delivery areas and their fees. Leave the list empty ( zones: [] ) to offer pickup only.
   // PLACEHOLDER areas and fees: confirm with the shop.
   zones: [
-    { id: 'beirut', name: 'Beirut', fee: 3 },
+    { id: 'beirut', name: 'Beirut', fee: 4 },
     { id: 'mount-lebanon', name: 'Mount Lebanon', fee: 4 },
-    { id: 'rest-of-lebanon', name: 'Rest of Lebanon', fee: 5 },
+    { id: 'rest-of-lebanon', name: 'Rest of Lebanon', fee: 4 },
   ],
   paymentMethod: 'Cash on delivery or at pickup.',
   maxPerSize: 10,
@@ -129,10 +130,13 @@ window.SHOP = {
       kind: 'cutout', back: 'products/pink-sunday-rest-back.webp', front: 'products/pink-front.webp',
       description: 'A hamster in a bucket hat, chair ready. Even saints take the day off.', sizes: ['S', 'M', 'L', 'XL', 'XXL'], soldOut: [] },
 
-    // ── Drop 02 · The Vault (coming soon: no sizes, cannot be ordered) ──
-    { id: 'cupid-ink', sku: 'SC-HD-V-CPI', name: 'Cupid Ink', collection: 'Drop 02', price: 35.99, image: '1000588155.jpg', kind: 'flat-lay', description: 'Sleeved up, bow drawn, cigar lit.', sizes: [] },
-    { id: 'hush', sku: 'SC-HD-V-HSH', name: 'Hush', collection: 'Drop 02', price: 35.99, image: '1000588158.jpg', kind: 'flat-lay', description: 'What happens in heaven…', sizes: [] },
-    { id: 'holy-smoke', sku: 'SC-HD-V-HSM', name: 'Holy Smoke', collection: 'Drop 02', price: 35.99, image: '1000588160.jpg', kind: 'flat-lay', description: 'Halo on. Rules off.', sizes: [] },
-    { id: 'thunder-father', sku: 'SC-HD-V-THF', name: 'Thunder Father', collection: 'Drop 02', price: 35.99, image: '1000588152.jpg', kind: 'flat-lay', description: 'Zeus, remixed for the block.', sizes: [] },
+    // ── Drop 02 · The Vault (sealed: the designs are not chosen yet) ──
+    // A coming-soon piece with no image shows as a sealed card: a hoodie silhouette, a wax seal and a
+    // redacted name. Nothing about the design appears on the page. To reveal one, give it a real
+    // name, image and description; add sizes when it can be ordered. Add or remove lines for more or fewer seals.
+    { id: 'vault-1', name: 'Sealed I', collection: 'Drop 02', price: 35.99, sizes: [] },
+    { id: 'vault-2', name: 'Sealed II', collection: 'Drop 02', price: 35.99, sizes: [] },
+    { id: 'vault-3', name: 'Sealed III', collection: 'Drop 02', price: 35.99, sizes: [] },
+    { id: 'vault-4', name: 'Sealed IV', collection: 'Drop 02', price: 35.99, sizes: [] },
   ],
 };
