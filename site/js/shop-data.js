@@ -65,6 +65,7 @@ window.SHOP = {
     { product: 'divine-strike', image: '05.jpg', w: 675, h: 900, colour: 'Black', view: 'Back', alt: 'Classical bust struck by a red streak' },
     { product: 'crimson-halo', image: '06.jpg', w: 675, h: 900, colour: 'Black', view: 'Back', alt: 'Red figure inside an ornate silver frame' },
     { product: 'archangel', image: '07.jpg', w: 677, h: 900, colour: 'Black', view: 'Back', alt: 'Winged angel statue' },
+    { product: 'gilded-vice-black', image: 'black-gilded-vice.jpg', w: 675, h: 900, colour: 'Black', view: 'Back', alt: 'Blindfolded marble bust with a cigarette and a gilded rifle' },
     { image: '08.jpg', w: 699, h: 900, colour: 'White', view: 'Front', alt: 'Gold Saints logo on the chest' },
     { product: 'holy-attitude', image: '09.jpg', w: 576, h: 900, colour: 'White', view: 'Back', alt: 'Cherub in sunglasses with an attitude' },
     { product: 'fallen-idol', image: '10.jpg', w: 675, h: 900, colour: 'White', view: 'Back', alt: 'Classical face breaking apart, a hand over the mouth' },
@@ -72,8 +73,8 @@ window.SHOP = {
     { product: 'golden-silence', image: '12.jpg', w: 675, h: 900, colour: 'White', view: 'Back', alt: 'Classical bust in a woven straw hat' },
     { image: '13.jpg', w: 699, h: 900, colour: 'Pink', view: 'Front', alt: 'Gold Saints logo on the chest' },
     { product: 'iced-out', image: '14.jpg', w: 677, h: 900, colour: 'Pink', view: 'Back', alt: 'Cherub in sunglasses sipping an iced drink' },
-    { product: 'holy-quack', image: '15.jpg', w: 678, h: 900, colour: 'Pink', view: 'Back', alt: 'Duckling with headphones and a backpack' },
-    { product: 'sunday-rest', image: '16.jpg', w: 677, h: 900, colour: 'Pink', view: 'Back', alt: 'Hamster in a bucket hat beside a yellow folding chair' },
+    { product: 'gilded-veil', image: 'pink-gilded-veil.jpg', w: 678, h: 900, colour: 'Pink', view: 'Back', alt: 'Marble bust with a band of fractured gold across the eyes' },
+    { product: 'gilded-vice-pink', image: 'pink-gilded-vice.jpg', w: 678, h: 900, colour: 'Pink', view: 'Back', alt: 'Blindfolded marble bust with a cigarette and a gilded rifle' },
   ],
 
   /* ── Products ────────────────────────────────────── */
@@ -106,6 +107,9 @@ window.SHOP = {
     { id: 'archangel', sku: 'SC-HD-BLK-ARC', name: 'Archangel', colour: 'Black', collection: 'Drop 01', price: 35.99, compareAt: 42.99,
       kind: 'cutout', back: 'products/black-archangel-back.webp', front: 'products/black-front.webp',
       description: "A stone angel, wings folded, standing guard. Heaven's front line.", sizes: ['S', 'M', 'L', 'XL', 'XXL'], soldOut: [] },
+    { id: 'gilded-vice-black', sku: 'SC-HD-BLK-GVC', name: 'Gilded Vice', colour: 'Black', collection: 'Drop 01', price: 35.99, compareAt: 42.99,
+      kind: 'cutout', back: 'products/black-gilded-vice-back.webp', front: 'products/black-front.webp',
+      description: 'A blindfolded marble muse with a cigarette and a gilded rifle.', sizes: ['S', 'M', 'L', 'XL', 'XXL'], soldOut: [] },
     // ── White ──
     { id: 'holy-attitude', sku: 'SC-HD-WHT-HAT', name: 'Holy Attitude', colour: 'White', collection: 'Drop 01', price: 35.99, compareAt: 42.99,
       kind: 'cutout', back: 'products/white-holy-attitude-back.webp', front: 'products/white-front.webp',
@@ -123,12 +127,12 @@ window.SHOP = {
     { id: 'iced-out', sku: 'SC-HD-PNK-ICO', name: 'Iced Out', colour: 'Pink', collection: 'Drop 01', price: 35.99, compareAt: 42.99,
       kind: 'cutout', back: 'products/pink-iced-out-back.webp', front: 'products/pink-front.webp',
       description: 'A cherub in shades, iced coffee in hand. Heaven runs on cold brew.', sizes: ['S', 'M', 'L', 'XL', 'XXL'], soldOut: [] },
-    { id: 'holy-quack', sku: 'SC-HD-PNK-HQK', name: 'Holy Quack', colour: 'Pink', collection: 'Drop 01', price: 35.99, compareAt: 42.99,
-      kind: 'cutout', back: 'products/pink-holy-quack-back.webp', front: 'products/pink-front.webp',
-      description: 'A duckling with headphones and a smoothie. Blessed and unbothered.', sizes: ['S', 'M', 'L', 'XL', 'XXL'], soldOut: [] },
-    { id: 'sunday-rest', sku: 'SC-HD-PNK-SNR', name: 'Sunday Rest', colour: 'Pink', collection: 'Drop 01', price: 35.99, compareAt: 42.99,
-      kind: 'cutout', back: 'products/pink-sunday-rest-back.webp', front: 'products/pink-front.webp',
-      description: 'A hamster in a bucket hat, chair ready. Even saints take the day off.', sizes: ['S', 'M', 'L', 'XL', 'XXL'], soldOut: [] },
+    { id: 'gilded-veil', sku: 'SC-HD-PNK-GVL', name: 'Gilded Veil', colour: 'Pink', collection: 'Drop 01', price: 35.99, compareAt: 42.99,
+      kind: 'cutout', back: 'products/pink-gilded-veil-back.webp', front: 'products/pink-front.webp',
+      description: 'A classical marble bust with a band of fractured gold across the eyes.', sizes: ['S', 'M', 'L', 'XL', 'XXL'], soldOut: [] },
+    { id: 'gilded-vice-pink', sku: 'SC-HD-PNK-GVC', name: 'Gilded Vice', colour: 'Pink', collection: 'Drop 01', price: 35.99, compareAt: 42.99,
+      kind: 'cutout', back: 'products/pink-gilded-vice-back.webp', front: 'products/pink-front.webp',
+      description: 'A blindfolded marble muse with a cigarette and a gilded rifle.', sizes: ['S', 'M', 'L', 'XL', 'XXL'], soldOut: [] },
 
     // ── Drop 02 · The Vault (sealed: the designs are not chosen yet) ──
     // A coming-soon piece with no image shows as a sealed card: a hoodie silhouette, a wax seal and a

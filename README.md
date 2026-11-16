@@ -21,7 +21,7 @@ Product names and SKUs: see [PRODUCTS.md](PRODUCTS.md).
 | `site/js/store.js` | Reads shop-data.js |
 | `site/js/closet.js` | Cart and checkout (WhatsApp message + Sheet copy) |
 | `site/js/site.js`, `hero.js` | Product cards, hero animation, page behaviour |
-| `site/js/procession.js` | The Procession: the 16 mannequin street photos between Drop 01 and the Gospel (list in `shop-data.js` → `procession`; photos in `assets/street/`, gallery copies in `assets/street/m/`) |
+| `site/js/procession.js` | The Procession: the mannequin street photos between Drop 01 and the Gospel (list in `shop-data.js` → `procession`; photos in `assets/street/`, gallery copies in `assets/street/m/`) |
 | `google-sheet/Code.gs` | The Apps Script for the order Sheet ([setup](google-sheet/SETUP.md)) |
 
 ## Preview locally

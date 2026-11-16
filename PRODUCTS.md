@@ -1,6 +1,6 @@
 # Saints Closet: products and SKUs
 
-Source: `Saints-Closet-Hoodie-Cutouts.zip` (13 back designs plus one front per colour). Every hoodie has the gold Saints wordmark on the chest.
+Source: `Saints-Closet-Hoodie-Cutouts.zip` and the three new product photos `new-design-1.jpg` through `new-design-3.jpg` (14 active back designs plus one front per colour). Every hoodie has the gold Saints wordmark on the chest.
 
 **SKU format:** `SC-HD-<colour>-<design>`, plus `-<size>` for each size.
 - Colour codes: BLK black, WHT white, PNK pink.
@@ -19,15 +19,16 @@ Source: `Saints-Closet-Hoodie-Cutouts.zip` (13 back designs plus one front per c
 | 4 | Crimson Halo | Black | SC-HD-BLK-CRH | **new name** (red-halo) | Red saint inside a silver flame halo |
 | 5 | Divine Strike | Black | SC-HD-BLK-DVS | **new name** (red-slash) | Marble bust cut by a red streak |
 | 6 | Archangel | Black | SC-HD-BLK-ARC | **new name** (winged-guardian) | Winged stone angel statue |
-| 7 | Holy Attitude | White | SC-HD-WHT-HAT | **new name** (cherub-in-shades) | Cherub in shades with an attitude |
-| 8 | Fallen Idol | White | SC-HD-WHT-FID | **new name** (broken-statue) | Classical face breaking apart |
-| 9 | Golden Silence | White | SC-HD-WHT-GLS | zip | Bust with a gold band over the eyes |
-| 10 | Sweet Sin | White | SC-HD-WHT-SWS | zip | David in shades with an ice cream |
-| 11 | Iced Out | Pink | SC-HD-PNK-ICO | zip | Cherub in shades with an iced coffee |
-| 12 | Holy Quack | Pink | SC-HD-PNK-HQK | **new name** (duck-with-headphones) | Duckling with headphones and a smoothie |
-| 13 | Sunday Rest | Pink | SC-HD-PNK-SNR | **new name** (hamster-and-chair) | Hamster in a bucket hat beside a folding chair |
+| 7 | Gilded Vice | Black | SC-HD-BLK-GVC | **new name** (new-design-3) | Blindfolded marble bust with a cigarette and a gilded rifle |
+| 8 | Holy Attitude | White | SC-HD-WHT-HAT | **new name** (cherub-in-shades) | Cherub in shades with an attitude |
+| 9 | Fallen Idol | White | SC-HD-WHT-FID | **new name** (broken-statue) | Classical face breaking apart |
+| 10 | Golden Silence | White | SC-HD-WHT-GLS | zip | Bust with a gold band over the eyes |
+| 11 | Sweet Sin | White | SC-HD-WHT-SWS | zip | David in shades with an ice cream |
+| 12 | Iced Out | Pink | SC-HD-PNK-ICO | zip | Cherub in shades with an iced coffee |
+| 13 | Gilded Veil | Pink | SC-HD-PNK-GVL | **new name** (new-design-1) | Classical bust with a band of fractured gold over the eyes |
+| 14 | Gilded Vice | Pink | SC-HD-PNK-GVC | **new name** (new-design-2) | Blindfolded marble bust with a cigarette and a gilded rifle |
 
-Size SKUs for each style: `-S`, `-M`, `-L`, `-XL`, `-XXL` (e.g. `SC-HD-PNK-SNR-XL`).
+Size SKUs for each style: `-S`, `-M`, `-L`, `-XL`, `-XXL` (e.g. `SC-HD-PNK-GVC-XL`).
 
 ## Drop 02 · The Vault (sealed, not orderable)
 The designs are not chosen yet. The site shows four sealed cards (`vault-1` to `vault-4` in `site/js/shop-data.js`):
@@ -39,4 +40,6 @@ and a colour SKU like the ones above. Add `sizes` when it can be ordered.
 Earlier Vault placeholders, no longer on the site: Cupid Ink, Hush, Holy Smoke, Thunder Father.
 
 ## Removed from the site
+Holy Quack (`SC-HD-PNK-HQK`) and Sunday Rest (`SC-HD-PNK-SNR`) were retired from Drop 01. These SKUs remain reserved.
+
 These were design placeholders and aren't in the official zip: The Tithe Collector, Blind Faith. Guardian Angel, Iced Out, Sweet Sin and Golden Silence moved from the Vault to Drop 01.
